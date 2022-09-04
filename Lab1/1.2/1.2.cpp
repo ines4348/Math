@@ -11,7 +11,6 @@ int main()
 {
     auto_cpu_timer timer;
     int n;
-    int count = 0;
     cout << "please input number: ";
     cin >> n;
 
