@@ -138,7 +138,7 @@ bool CountSpanningTrees(const std::string& inputFileName)
 
 	PrintMatrix(minor);
 
-	const double EPS = 1E-9;
+	const double EPS = 0.000000001;
 	double det = 1;
 	for (int i = 0; i < minor.size(); ++i) {
 		int k = i;
