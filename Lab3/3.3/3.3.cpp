@@ -12,9 +12,9 @@ using namespace std;
 vector<int> used, d, up;
 set<int> artPoints;
 
-bool CopyDoubleFromFileToArray(std::istream& inFile, vector<vector<int>>& graph)
+bool CopyIntFromFileToArray(istream& inFile, vector<vector<int>>& graph)
 {
-	std::string str;
+	string str;
 	inFile >> str;
 	const int matrixSize = stoi(str);
 	graph.resize(matrixSize);
@@ -81,26 +81,26 @@ vector<vector <double>> fillMinor(vector<vector<double>>& matrix)
 	return minor;
 }
 
-bool CopyMatrixFromFileToArray(const std::string& inputFileName, vector<vector<int>>& graph)
+bool CopyGraphFromFileToArray(const string& inputFileName, vector<vector<int>>& graph)
 {
-	std::ifstream inputFile;
+	ifstream inputFile;
 
 	inputFile.open(inputFileName);
 	if (!inputFile.is_open())
 	{
-		std::cout << "Failed to open " << inputFileName << " for reading\n";
+		cout << "Failed to open " << inputFileName << " for reading\n";
 		return false;
 	}
 
-	if (!CopyDoubleFromFileToArray(inputFile, graph))
+	if (!CopyIntFromFileToArray(inputFile, graph))
 	{
-		std::cout << "Failed to copy data from " << inputFileName << " to matrix. Wrong input data\n";
+		cout << "Failed to copy data from " << inputFileName << " to matrix. Wrong input data\n";
 		return false;
 	}
 
 	if (inputFile.bad())
 	{
-		std::cout << "Failed to read data from input file\n";
+		cout << "Failed to read data from input file\n";
 		return false;
 	}
 
@@ -113,19 +113,19 @@ void PrintMatrix(vector<vector<double>> matrix)
 	{
 		for (int j = 0; j < matrix.size(); j++)
 		{
-			std::cout << std::setw(6) << std::setprecision(4) << matrix[i][j] << " ";
+			cout << setw(6) << setprecision(4) << matrix[i][j] << " ";
 		}
-		std::cout << std::endl;
+		cout << endl;
 	}
 
-	std::cout << std::endl;
+	cout << endl;
 }
 
-bool CountSpanningTrees(const std::string& inputFileName)
+bool getMinimalCosts(const string& inputFileName)
 {
 	vector<vector<int>> graph;
 
-	if (!CopyMatrixFromFileToArray(inputFileName, graph))
+	if (!CopyGraphFromFileToArray(inputFileName, graph))
 	{
 		return false;
 	}
@@ -183,7 +183,7 @@ bool CountSpanningTrees(const std::string& inputFileName)
 
 int main() {
 
-	if (!CountSpanningTrees("graph.txt"))
+	if (!getMinimalCosts("graph.txt"))
 	{
 		return 1;
 	}
